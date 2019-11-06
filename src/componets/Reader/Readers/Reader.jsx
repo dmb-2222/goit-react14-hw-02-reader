@@ -2,33 +2,30 @@ import React, { Component } from "react";
 import Publication from "../Publication/Publication";
 import Controls from "../Controls/Controls";
 import Counter from "../Counter/Counter";
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 class Reader extends Component {
   state = {
-    publications: this.props,
+    currentPage: 1
+  };
+  indicution = {
     currentIdex: 0,
-    currentPage: 1,
     isActiveButtonNext: false,
     isActiveButtonPrev: true
   };
 
   handleNextPage = () => {
     if (this.state.currentPage >= 1) {
-      this.setState({
-        isActiveButtonPrev: false
-      });
+      this.indicution.isActiveButtonPrev = false;
     }
     if (this.state.currentPage === this.props.publications.length - 1) {
-      this.setState({
-        isActiveButtonNext: true
-      });
+      this.indicution.isActiveButtonNext = true;
     }
 
     this.setState(prevState => {
       if (this.state.currentPage < this.props.publications.length) {
+        this.indicution.currentIdex++;
         return {
-          currentIdex: prevState.currentIdex + 1,
           currentPage: prevState.currentPage + 1
         };
       }
@@ -36,42 +33,33 @@ class Reader extends Component {
   };
   handlePrevPage = () => {
     if (this.state.currentPage <= 2) {
-      this.setState({
-        isActiveButtonPrev: true
-      });
+      this.indicution.isActiveButtonPrev = true;
     }
     if (this.state.currentPage !== this.props.publications.length - 1) {
-      this.setState({
-        isActiveButtonNext: false
-      });
+      this.indicution.isActiveButtonNext = false;
     }
 
     this.setState(prevState => {
-      if (prevState.currentIdex) {
-        return {
-          currentIdex: prevState.currentIdex - 1,
-          currentPage: prevState.currentPage - 1
-        };
-      }
+      this.indicution.currentIdex--;
+      return {
+        currentPage: prevState.currentPage - 1
+      };
     });
   };
 
   render() {
-    const {
-      currentIdex,
-      currentPage,
-      isActiveButtonNext,
-      isActiveButtonPrev
-    } = this.state;
-    const { id, title, text } = this.props.publications[currentIdex];
+    const { currentPage } = this.state;
+    const { id, title, text } = this.props.publications[
+      this.indicution.currentIdex
+    ];
 
     return (
       <div className="reader">
         <Controls
           next={this.handleNextPage}
           prev={this.handlePrevPage}
-          isActiveButtonNext={isActiveButtonNext}
-          isActiveButtonPrev={isActiveButtonPrev}
+          isActiveButtonNext={this.indicution.isActiveButtonNext}
+          isActiveButtonPrev={this.indicution.isActiveButtonPrev}
         />
         <Publication
           id={id}

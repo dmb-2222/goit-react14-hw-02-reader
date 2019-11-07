@@ -1,12 +1,12 @@
 import React from "react";
 import propTypes from "prop-types";
 
-const Controls = ({ next, isActiveButtonNext, isActiveButtonPrev }) => (
+const Controls = ({ handleClick, isActiveButtonNext, isActiveButtonPrev }) => (
   <section className="controls">
     <button
       type="button"
       className="button"
-      onClick={next}
+      onClick={handleClick}
       disabled={isActiveButtonPrev}
       name = 'prev'
     >
@@ -15,7 +15,7 @@ const Controls = ({ next, isActiveButtonNext, isActiveButtonPrev }) => (
     <button
       type="button"
       className="button"
-      onClick={next}
+      onClick={handleClick}
       disabled={isActiveButtonNext}
       name = 'next'
     >

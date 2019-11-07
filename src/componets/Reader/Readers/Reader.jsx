@@ -14,7 +14,7 @@ class Reader extends Component {
     isActiveButtonPrev: true
   };
 
-  handleNextPage = e => {
+  handleClick = e => {
     const name = e.target.name;
     if (name === "next") {
       if (this.state.currentPage >= 1) {
@@ -57,7 +57,7 @@ class Reader extends Component {
     return (
       <div className="reader">
         <Controls
-          next={this.handleNextPage}
+          handleClick={this.handleClick}
           isActiveButtonNext={this.indicution.isActiveButtonNext}
           isActiveButtonPrev={this.indicution.isActiveButtonPrev}
         />

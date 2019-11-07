@@ -14,37 +14,38 @@ class Reader extends Component {
     isActiveButtonPrev: true
   };
 
-  handleNextPage = () => {
-    if (this.state.currentPage >= 1) {
-      this.indicution.isActiveButtonPrev = false;
-    }
-    if (this.state.currentPage === this.props.publications.length - 1) {
-      this.indicution.isActiveButtonNext = true;
-    }
-
-    this.setState(prevState => {
-      if (this.state.currentPage < this.props.publications.length) {
-        this.indicution.currentIdex++;
-        return {
-          currentPage: prevState.currentPage + 1
-        };
+  handleNextPage = e => {
+    const name = e.target.name;
+    if (name === "next") {
+      if (this.state.currentPage >= 1) {
+        this.indicution.isActiveButtonPrev = false;
       }
-    });
-  };
-  handlePrevPage = () => {
-    if (this.state.currentPage <= 2) {
-      this.indicution.isActiveButtonPrev = true;
+      if (this.state.currentPage === this.props.publications.length - 1) {
+        this.indicution.isActiveButtonNext = true;
+      }
+      this.setState(prevState => {
+        if (this.state.currentPage < this.props.publications.length) {
+          this.indicution.currentIdex++;
+          return {
+            currentPage: prevState.currentPage + 1
+          };
+        }
+      });
     }
-    if (this.state.currentPage !== this.props.publications.length - 1) {
-      this.indicution.isActiveButtonNext = false;
+    if (name === "prev") {
+      if (this.state.currentPage <= 2) {
+        this.indicution.isActiveButtonPrev = true;
+      }
+      if (this.state.currentPage !== this.props.publications.length - 1) {
+        this.indicution.isActiveButtonNext = false;
+      }
+      this.setState(prevState => {
+        this.indicution.currentIdex--;
+        return {
+          currentPage: prevState.currentPage - 1
+        };
+      });
     }
-
-    this.setState(prevState => {
-      this.indicution.currentIdex--;
-      return {
-        currentPage: prevState.currentPage - 1
-      };
-    });
   };
 
   render() {
@@ -57,7 +58,6 @@ class Reader extends Component {
       <div className="reader">
         <Controls
           next={this.handleNextPage}
-          prev={this.handlePrevPage}
           isActiveButtonNext={this.indicution.isActiveButtonNext}
           isActiveButtonPrev={this.indicution.isActiveButtonPrev}
         />

@@ -1,14 +1,14 @@
 import React from "react";
 import propTypes from "prop-types";
 
-const Controls = ({ handleClick, isActiveButtonNext, isActiveButtonPrev }) => (
+const Controls = ({ handleClick, currentPage, pubLength }) => (
   <section className="controls">
     <button
       type="button"
       className="button"
       onClick={handleClick}
-      disabled={isActiveButtonPrev}
-      name = 'prev'
+      disabled={currentPage <= 1}
+      name="prev"
     >
       Назад
     </button>
@@ -16,8 +16,8 @@ const Controls = ({ handleClick, isActiveButtonNext, isActiveButtonPrev }) => (
       type="button"
       className="button"
       onClick={handleClick}
-      disabled={isActiveButtonNext}
-      name = 'next'
+      disabled={currentPage >= pubLength}
+      name="next"
     >
       Вперед
     </button>

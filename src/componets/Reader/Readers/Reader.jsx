@@ -8,24 +8,15 @@ class Reader extends Component {
   state = {
     currentPage: 1
   };
-  indicution = {
-    currentIdex: 0,
-    isActiveButtonNext: false,
-    isActiveButtonPrev: true
-  };
-
+  currentIdex = 0;
+  pubLength = this.props.publications.length;
   handleClick = e => {
     const name = e.target.name;
+    const { currentPage } = this.state;
     if (name === "next") {
-      if (this.state.currentPage >= 1) {
-        this.indicution.isActiveButtonPrev = false;
-      }
-      if (this.state.currentPage === this.props.publications.length - 1) {
-        this.indicution.isActiveButtonNext = true;
-      }
       this.setState(prevState => {
-        if (this.state.currentPage < this.props.publications.length) {
-          this.indicution.currentIdex++;
+        if (currentPage < this.pubLength) {
+          this.currentIdex++;
           return {
             currentPage: prevState.currentPage + 1
           };
@@ -33,14 +24,8 @@ class Reader extends Component {
       });
     }
     if (name === "prev") {
-      if (this.state.currentPage <= 2) {
-        this.indicution.isActiveButtonPrev = true;
-      }
-      if (this.state.currentPage !== this.props.publications.length - 1) {
-        this.indicution.isActiveButtonNext = false;
-      }
       this.setState(prevState => {
-        this.indicution.currentIdex--;
+        this.currentIdex--;
         return {
           currentPage: prevState.currentPage - 1
         };
@@ -50,16 +35,13 @@ class Reader extends Component {
 
   render() {
     const { currentPage } = this.state;
-    const { id, title, text } = this.props.publications[
-      this.indicution.currentIdex
-    ];
-
+    const { id, title, text } = this.props.publications[this.currentIdex];
     return (
       <div className="reader">
         <Controls
           handleClick={this.handleClick}
-          isActiveButtonNext={this.indicution.isActiveButtonNext}
-          isActiveButtonPrev={this.indicution.isActiveButtonPrev}
+          currentPage={currentPage}
+          pubLength={this.pubLength}
         />
         <Publication
           id={id}

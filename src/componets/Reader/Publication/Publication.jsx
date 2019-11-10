@@ -1,8 +1,9 @@
 import React from "react";
+import styles from '../../../common/css/Reader.module.css';
 import propTypes from "prop-types";
 const Publication = ({ id, title, text, currentPage }) => {
   return (
-    <article className="publication" data-id={id}>
+    <article className={styles.publication} data-id={id}>
       <h2>
         {currentPage}.{title}
       </h2>

@@ -1,9 +1,9 @@
 import React from "react";
 import propTypes from "prop-types";
-
+import styles from '../../../common/css/Reader.module.css';
 const Counter = ({ currentPage, publicationsLength }) => {
   return (
-    <p className="counter">
+    <p className={styles.counter}>
       {currentPage}/{publicationsLength}
     </p>
   );

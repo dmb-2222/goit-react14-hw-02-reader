@@ -1,11 +1,12 @@
 import React from "react";
 import propTypes from "prop-types";
+import styles from '../../../common/css/Reader.module.css';
 
 const Controls = ({ handleClick, currentPage, pubLength }) => (
-  <section className="controls">
+  <section className={styles.controls}>
     <button
       type="button"
-      className="button"
+      className={styles.button}
       onClick={handleClick}
       disabled={currentPage <= 1}
       name="prev"
@@ -14,7 +15,7 @@ const Controls = ({ handleClick, currentPage, pubLength }) => (
     </button>
     <button
       type="button"
-      className="button"
+      className={styles.button}
       onClick={handleClick}
       disabled={currentPage >= pubLength}
       name="next"

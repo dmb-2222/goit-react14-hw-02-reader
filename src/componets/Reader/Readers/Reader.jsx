@@ -3,6 +3,7 @@ import Publication from "../Publication/Publication";
 import Controls from "../Controls/Controls";
 import Counter from "../Counter/Counter";
 import propTypes from "prop-types";
+import styles from '../../../common/css/Reader.module.css';
 
 class Reader extends Component {
   state = {
@@ -27,7 +28,7 @@ class Reader extends Component {
     const { currentPage } = this.state;
     const { id, title, text } = this.props.publications[this.currentIdex];
     return (
-      <div className="reader">
+      <div className={styles.reader}>
         <Controls
           handleClick={this.handleClick}
           currentPage={currentPage}

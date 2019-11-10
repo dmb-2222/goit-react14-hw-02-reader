@@ -10,27 +10,17 @@ class Reader extends Component {
   };
   currentIdex = 0;
   pubLength = this.props.publications.length;
-  handleClick = e => {
-    const name = e.target.name;
-    const { currentPage } = this.state;
-    if (name === "next") {
-      this.setState(prevState => {
-        if (currentPage < this.pubLength) {
-          this.currentIdex++;
-          return {
-            currentPage: prevState.currentPage + 1
-          };
-        }
-      });
-    }
-    if (name === "prev") {
-      this.setState(prevState => {
-        this.currentIdex--;
-        return {
-          currentPage: prevState.currentPage - 1
-        };
-      });
-    }
+  handleClick = ({ target: { name } }) => {
+    this.currentIdex =
+      name === "next" ? this.currentIdex++ : this.currentIdex++;
+    this.setState(prevState => {
+      return {
+        currentPage:
+          name === "next"
+            ? prevState.currentPage + 1
+            : prevState.currentPage - 1
+      };
+    });
   };
 
   render() {

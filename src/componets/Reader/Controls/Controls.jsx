@@ -8,7 +8,7 @@ const Controls = ({ handleClick, currentPage, pubLength }) => (
       type="button"
       className={styles.button}
       onClick={handleClick}
-      disabled={currentPage <= 1}
+      disabled={currentPage === 1}
       name="prev"
     >
       Назад

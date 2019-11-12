@@ -9,11 +9,8 @@ class Reader extends Component {
   state = {
     currentPage: 1
   };
-  currentIdex = 0;
-  pubLength = this.props.publications.length;
   handleClick = ({ target: { name } }) => {
-    this.currentIdex =
-      name === "next" ? this.currentIdex++ : this.currentIdex++;
+
     this.setState(prevState => {
       return {
         currentPage:
@@ -23,16 +20,16 @@ class Reader extends Component {
       };
     });
   };
-
   render() {
     const { currentPage } = this.state;
-    const { id, title, text } = this.props.publications[this.currentIdex];
+    const { id, title, text } = this.props.publications[this.state.currentPage-1];
+    const {publications} = this.props
     return (
       <div className={styles.reader}>
         <Controls
           handleClick={this.handleClick}
           currentPage={currentPage}
-          pubLength={this.pubLength}
+          pubLength={publications.length}
         />
         <Publication
           id={id}
@@ -41,7 +38,7 @@ class Reader extends Component {
           currentPage={currentPage}
         />
         <Counter
-          publicationsLength={this.props.publications.length}
+          publicationsLength={publications.length}
           currentPage={currentPage}
         />
       </div>

@@ -3,7 +3,7 @@ import Publication from "../Publication/Publication";
 import Controls from "../Controls/Controls";
 import Counter from "../Counter/Counter";
 import propTypes from "prop-types";
-import styles from '../../../common/css/Reader.module.css';
+import styles from './Reader.module.css';
 
 class Reader extends Component {
   state = {

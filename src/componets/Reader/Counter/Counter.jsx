@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import styles from '../../../common/css/Reader.module.css';
+import styles from './Counter.module.css';
 const Counter = ({ currentPage, publicationsLength }) => {
   return (
     <p className={styles.counter}>
